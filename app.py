@@ -32,7 +32,19 @@ left, right = st.columns(2)
 with left:
     st.header("Input & Options")
     task = st.selectbox("Choose task", list(TASK_PROMPTS.keys()), index=0)
-    input_text = st.text_area("Input text / Context", height=220, placeholder="Paste text here...")
+
+    # Dynamic UI: Change label and placeholder based on task
+    if task == "Text generation":
+        lbl = "Enter a Prompt"
+        ph = "e.g., Once upon a time, there was a robot who..."
+    elif task == "Question Answering (QA)":
+        lbl = "Context Text"
+        ph = "Paste the story or article here..."
+    else:
+        lbl = "Input Text"
+        ph = "Paste text here..."
+
+    input_text = st.text_area(lbl, height=220, placeholder=ph)
     
     question = ""
     if task == "Question Answering (QA)":
@@ -49,7 +61,7 @@ with right:
 
 if run:
     if not input_text:
-        out.error("Please provide input text.")
+        out.warning(f"⚠️ Please provide text for '{task}'.")
     else:
         with st.spinner(f"Running {MODEL_CHECKPOINT}..."):
             try:
