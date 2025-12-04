@@ -2,3 +2,4 @@ streamlit
 transformers
 sentence-transformers
 torch
+sentencepiece
