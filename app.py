@@ -2,12 +2,13 @@ import streamlit as st
 from transformers import pipeline
 
 # Config
-st.set_page_config(page_title="NLP ToolKit (One Model)", layout="wide")
-st.title("NLP ToolKit — Single Model Edition")
-st.caption("Powered by `google/flan-t5-base` for all tasks.")
+st.set_page_config(page_title="NLP ToolKit (Fast)", layout="wide")
+st.title("NLP ToolKit — Fast Model Edition")
+st.caption("Powered by `google/flan-t5-small` for faster CPU inference.")
 
 # The single model used for everything
-MODEL_CHECKPOINT = "google/flan-t5-base"
+# Switched to 'small' to reduce runtime latency on CPUs
+MODEL_CHECKPOINT = "google/flan-t5-small"
 
 # Mapping tasks to the prefixes FLAN-T5 expects
 TASK_PROMPTS = {
